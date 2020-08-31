@@ -1,0 +1,21 @@
+/* .home-header {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+} 
+
+.home-header .home-header-carousel {
+    flex: 60%;
+}
+
+.home-header .home-header-card {
+    flex: 40%;
+} */
+
+
+.home-bg {
+    display: flex;
+    overflow-x: auto;
+    background: #000000;
+}

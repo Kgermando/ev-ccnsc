@@ -40,16 +40,20 @@
         margin-top: 2rem;
     }
 
-    .actualite .actualite-body .actu-body-card {
-       /* width: calc(100% - 33.3%); */
+    .actu-body-card {
+       width: calc(100% - 33.3%);
        width: 100%; /* fallback if needed */
-       width: calc(100% - 3em);
+       /* width: calc(100% - 3em); */
     } 
 
     .actu-body-card-items {
         min-width: 300px;
         max-width: 300px;
         width: 300px;
+    }
+
+    .actu-detail-title {
+        font-weight: 800;
     }
 
 }
@@ -75,5 +79,9 @@
     }
     .actualite-home .actualite-header .actu-card-header {
         width: 100%
+    }
+
+    h1 {
+        font-size: 12px;
     }
 }

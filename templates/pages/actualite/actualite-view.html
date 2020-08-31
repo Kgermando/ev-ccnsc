@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+
+{% block title %} {{actualite_list.actu_titre}} {% endblock title %}
+
+{% block content %}
+
+<div class="container">
+    <div class="lois-detail pb-5">
+        <h2 class="actu-detail-title font-weight-bold p-3">{{actualite_list.actu_province}}: {{ actualite_list.actu_titre }}</h2>
+
+        <h3 class="text-left pl-3"><span class="badge badge-danger">{{actualite_list.actu_categorie}}</span></h3>
+        
+        <div class="container d-flex justify-content-start pt-1">
+            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-clock-history" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M8.515 1.019A7 7 0 0 0 8 1V0a8 8 0 0 1 .589.022l-.074.997zm2.004.45a7.003 7.003 0 0 0-.985-.299l.219-.976c.383.086.76.2 1.126.342l-.36.933zm1.37.71a7.01 7.01 0 0 0-.439-.27l.493-.87a8.025 8.025 0 0 1 .979.654l-.615.789a6.996 6.996 0 0 0-.418-.302zm1.834 1.79a6.99 6.99 0 0 0-.653-.796l.724-.69c.27.285.52.59.747.91l-.818.576zm.744 1.352a7.08 7.08 0 0 0-.214-.468l.893-.45a7.976 7.976 0 0 1 .45 1.088l-.95.313a7.023 7.023 0 0 0-.179-.483zm.53 2.507a6.991 6.991 0 0 0-.1-1.025l.985-.17c.067.386.106.778.116 1.17l-1 .025zm-.131 1.538c.033-.17.06-.339.081-.51l.993.123a7.957 7.957 0 0 1-.23 1.155l-.964-.267c.046-.165.086-.332.12-.501zm-.952 2.379c.184-.29.346-.594.486-.908l.914.405c-.16.36-.345.706-.555 1.038l-.845-.535zm-.964 1.205c.122-.122.239-.248.35-.378l.758.653a8.073 8.073 0 0 1-.401.432l-.707-.707z"/>
+                <path fill-rule="evenodd" d="M8 1a7 7 0 1 0 4.95 11.95l.707.707A8.001 8.001 0 1 1 8 0v1z"/>
+                <path fill-rule="evenodd" d="M7.5 3a.5.5 0 0 1 .5.5v5.21l3.248 1.856a.5.5 0 0 1-.496.868l-3.5-2A.5.5 0 0 1 7 9V3.5a.5.5 0 0 1 .5-.5z"/>
+            </svg>
+            <p class="text-muted pl-1">Il y a {{ actualite_list.created|timesince }}</p> 
+        </div>
+
+        <img src="{{actualite_list.actu_image.url}}" alt="{{ actualite_list.actu_title }}" class="container card-img w-100 h-50"/>
+
+        <div class="card-deck">
+            {% if actu_image_1 and actu_image_2 or actu_image_3 %}
+                <div class="card">
+                <img src="{{actualite_list.actu_image_1.url}}" class="card-img-top" alt="...">
+                </div>
+                <div class="card">
+                <img src="{{actualite_list.actu_image_2.url}}" class="card-img-top" alt="...">
+                </div>
+                <div class="card">
+                <img src="{{actualite_list.actu_image_3.url}}" class="card-img-top" alt="...">
+                </div>
+            {% else %}
+
+
+            {% endif %}
+        </div>
+        
+        <div class="container d-flex justify-content-start pt-3">
+            <p class="ltext-muted pr-5">Ecrit par {{ actualite_list.auteur }}</p>
+        </div>
+        
+        <div class="lois-detail-content pt-2">
+            <p class="lois-detail-body text-left">{{ actualite_list.actu_content }}</p>
+        </div>
+        <div class="icon text-black">
+            <li class="d-inline pr-2"><a href="https://www.facebook.com/" target="_blank" class="text-white"><i class="fa fa-facebook-official fa-2x" aria-hidden="true"></i></a></li>
+            <li class="d-inline pr-2"><a href="https://twitter.com/" target="_blank" class="text-white"><i class="fa fa-twitter fa-2x" aria-hidden="true"></i></a></li>
+            <li class="d-inline pr-2"><a href="https://www.instagram.com/" target="_blank" class="text-white"><i class="fa fa-instagram fa-2x" aria-hidden="true"></i></a></li>
+        </div>
+    </div>
+
+    <div class="actu-relative">
+        <div class="container">
+            <div class="container banner">
+                <h3 class="text-black">Voir aussi</h3>
+            </div>
+            <div class="row">
+                {% for actu in actu_relative %}
+                    <div class="card p-3" style="min-width: 200px; max-width: 260px;">
+                        <img src="{{actu.actu_image.url}}" class="card-img-top w-100 h-50" alt="{{actu.actu_titre}}">
+                        <div class="card-body p-0">
+                            <h5 class="card-title">
+                                <a href="{% url 'actualite:actualite-view-detail' actu.id %} ">{{actu.actu_titre|truncatechars:28}}</a>
+                            </h5>
+                            <p class="card-text">{{actu.actu_content |truncatewords:"5"}}</p>
+                            <p class="card-text">
+                                <small class="text-muted">
+                                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-clock-history" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" d="M8.515 1.019A7 7 0 0 0 8 1V0a8 8 0 0 1 .589.022l-.074.997zm2.004.45a7.003 7.003 0 0 0-.985-.299l.219-.976c.383.086.76.2 1.126.342l-.36.933zm1.37.71a7.01 7.01 0 0 0-.439-.27l.493-.87a8.025 8.025 0 0 1 .979.654l-.615.789a6.996 6.996 0 0 0-.418-.302zm1.834 1.79a6.99 6.99 0 0 0-.653-.796l.724-.69c.27.285.52.59.747.91l-.818.576zm.744 1.352a7.08 7.08 0 0 0-.214-.468l.893-.45a7.976 7.976 0 0 1 .45 1.088l-.95.313a7.023 7.023 0 0 0-.179-.483zm.53 2.507a6.991 6.991 0 0 0-.1-1.025l.985-.17c.067.386.106.778.116 1.17l-1 .025zm-.131 1.538c.033-.17.06-.339.081-.51l.993.123a7.957 7.957 0 0 1-.23 1.155l-.964-.267c.046-.165.086-.332.12-.501zm-.952 2.379c.184-.29.346-.594.486-.908l.914.405c-.16.36-.345.706-.555 1.038l-.845-.535zm-.964 1.205c.122-.122.239-.248.35-.378l.758.653a8.073 8.073 0 0 1-.401.432l-.707-.707z"/>
+                                        <path fill-rule="evenodd" d="M8 1a7 7 0 1 0 4.95 11.95l.707.707A8.001 8.001 0 1 1 8 0v1z"/>
+                                        <path fill-rule="evenodd" d="M7.5 3a.5.5 0 0 1 .5.5v5.21l3.248 1.856a.5.5 0 0 1-.496.868l-3.5-2A.5.5 0 0 1 7 9V3.5a.5.5 0 0 1 .5-.5z"/>
+                                    </svg>
+                                    Il y a {{actu.created|timesince}}
+                                </small>
+                            </p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="pagination">
+                <span class="step-links">
+                    {% if actu.has_previous %}          
+                        <a href="?page={{ actu.previous_page_number }}">précédente</a>
+                    {% endif %}
+    
+                    <span class="current">
+                    {{ actu.number }}
+                    </span>
+    
+                    {% if actu.has_next %}
+                        <a href="?page={{ actu.next_page_number }}">suivante</a>
+                    {% endif %}
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

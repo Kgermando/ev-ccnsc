@@ -1,17 +1,74 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
+from django.contrib import messages # for message
+from django.urls import reverse
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
-from app.models import Home
+from actualite.models import Actualite
+
 # Create your views here.
-def home_list(request):
-    home_list = Home.objects.all()
+def home_views(request):
+    home_list = Actualite.objects.all().order_by('-created')[:1]
+    home_laterale = Actualite.objects.all().order_by('-created')[:3]
+    economie_list = Actualite.objects.filter(actu_categorie='ECONOMIE').order_by('-created')[:3]
+    sante_list = Actualite.objects.filter(actu_categorie='SANTE').order_by('-created')[:3]
+    securite_list = Actualite.objects.filter(actu_categorie='SECURITE').order_by('-created')[:3]
+    formation_list = Actualite.objects.filter(actu_categorie='FORMATIONS').order_by('-created')[:3]
     context = {
-        'hme_list': home_list
+        'home_list': home_list,
+        'home_laterale': home_laterale,
+        'economie_list': economie_list,
+        'sante_list': sante_list,
+        'securite_list': securite_list,
+        'formation_list': formation_list
     }
     template_name = 'pages/app/home.html'
     return render(request, template_name, context)
 
+def economie_views(request):
+    economie_list = Actualite.objects.filter(actu_categorie='ECONOMIE').order_by('-created')
+    context = {
+        'economie_list': economie_list
+    }
+    template_name = 'pages/app/economie.html'
+    return render(request, template_name, context)
 
-def contact_view(request):
+def sante_views(request):
+    sante = Actualite.objects.filter(actu_categorie='SANTE').order_by('-created')
+    paginator = Paginator(sante, 9)
+    page = request.GET.get('page')
+    try:
+        sante_list = paginator.page(page)
+    except PageNotAnInteger:
+        sante_list = paginator.page(1)
+    except EmptyPage:
+        sante_list = paginator.page(paginator.num_pages)
+    context = {
+        'sante_list': sante_list
+    }
+    template_name = 'pages/app/sante.html'
+    return render(request, template_name, context)
+
+def securite_views(request):
+    securite_list = Actualite.objects.filter(actu_categorie='SECURITE').order_by('-created')
+    context = {
+        'securite_list': securite_list
+    }
+    template_name = 'pages/app/securite.html'
+    return render(request, template_name, context)
+
+
+def formation_views(request):
+    formation_list = Actualite.objects.filter(actu_categorie='FORMATIONS').order_by('-created')
+    context = {
+        'formation_list': formation_list
+    }
+    template_name = 'pages/app/formation.html'
+    return render(request, template_name, context)
+
+
+def contact_views(request):
     if  request.method == 'POST':
         first_name = request.POST['first_name']
         last_name = request.POST['last_name']
