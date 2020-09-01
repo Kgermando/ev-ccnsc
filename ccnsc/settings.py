@@ -27,8 +27,7 @@ SECRET_KEY = 'w!+%q^86qotsnev)h9(511zv6%83!6fmthi1m@&&v2tssyi74_'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.1.179']
-
+ALLOWED_HOSTS = ['*', '192.168.1.179']
 
 # Application definition
 
@@ -39,16 +38,19 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
 
-    # 'django.contrib.sites.models.Site',
-
-    # 'robots', # Add
+    'newsletter',
+    'django_social_share',
 
     'app',
     'actualite',
     'accounts',
     'ourteam',
+    'handlers',
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

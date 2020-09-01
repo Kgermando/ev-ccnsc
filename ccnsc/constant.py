@@ -24,9 +24,7 @@ PROVINCES = [
     ('Tanganyika', 'Tanganyika'),
     ('Tshopo', 'Tshopo'),
     ('Tshuapa', 'Tshuapa'),
-    ('RDC', 'RDC'),
     ('INTERNATIONALE', 'INTERNATIONALE'),
-    ('AUTRES', 'AUTRES')
 ]
 
 CATEGORIES = [

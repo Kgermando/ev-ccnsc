@@ -88,16 +88,13 @@
             </div> -->
             <div class="text-center pb-3">
                 <h4 class="text-white">Newsletter</h4>
-                <form action="#" method="post" id="subscribe-blog-blog_subscription-3">
-                    <p id="subscribe-email">
-                        <input type="email" name="email" required="required" class="required" value="" id="subscribe-field-blog_subscription-3" placeholder="Adresse e-mail">
-                        <button type="submit" name="jetpack_subscriptions_widget">
-                            Abonnez-vous                        
-                        </button>
-                    </p>
+                <form enctype="multipart/form-data" method="post" action="/newsletter/newsletter/subscribe/">
+                    {% csrf_token %}
+                    <!-- <label for="id_email_field">E-mail:</label> -->
+                    <input type="email" name="email_field" required="" id="id_email_field" placeholder="Email">
+                    <button id="id_submit" name="submit" value="Subscribe" type="submit">Abonnez-vous</button>
                 </form>
             </div>
-            
         </div>
     </div>
 </footer>

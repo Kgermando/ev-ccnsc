@@ -19,13 +19,20 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
 
+
 urlpatterns = [
     path('', include('app.urls')),
     path('accounts/', include('accounts.urls')),
     path('actualite/', include('actualite.urls')),
     path('ourteam/', include('ourteam.urls')),
+    path('newsletter/', include('newsletter.urls')),
     path('admin/', admin.site.urls),
 ]
+
+handler400 = 'handlers.views.handler400'
+handler403 = 'handlers.views.handler403'
+handler404 = 'handlers.views.handler404'
+handler500 = 'handlers.views.handler500' 
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

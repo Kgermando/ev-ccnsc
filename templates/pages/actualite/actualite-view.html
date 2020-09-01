@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load social_share %}
 {% block title %} {{actualite_list.actu_titre}} {% endblock title %}
 
 {% block content %}
@@ -45,10 +45,23 @@
         <div class="lois-detail-content pt-2">
             <p class="lois-detail-body text-left">{{ actualite_list.actu_content }}</p>
         </div>
-        <div class="icon text-black">
-            <li class="d-inline pr-2"><a href="https://www.facebook.com/" target="_blank" class="text-white"><i class="fa fa-facebook-official fa-2x" aria-hidden="true"></i></a></li>
-            <li class="d-inline pr-2"><a href="https://twitter.com/" target="_blank" class="text-white"><i class="fa fa-twitter fa-2x" aria-hidden="true"></i></a></li>
-            <li class="d-inline pr-2"><a href="https://www.instagram.com/" target="_blank" class="text-white"><i class="fa fa-instagram fa-2x" aria-hidden="true"></i></a></li>
+        <div class="float-right">   
+            <button type="button" class="btn btn-light float-right">
+                <i class="fa fa-facebook-official fa-2x" aria-hidden="true"></i> 
+                {% post_to_facebook actualite_list.get_absolute "Facebook" %}
+            </button>
+            <button type="button" class="btn btn-light float-right">
+                <i class="fa fa-twitter fa-2x" aria-hidden="true"></i>
+                {% post_to_twitter "{{actualite_list.actu_titre}}." actualite_list.get_absolute_url "Twitter" %}
+            </button>
+            <button type="button" class="btn btn-light float-right">
+                <i class="fa fa-envelope fa-2x" aria-hidden="true"></i>    
+                {% send_email "{{actualite_list.actu_titre}}." actualite_list.get_absolute_url "Mail" %}
+            </button>
+            <button type="button" class="btn btn-light float-right">
+                <i class="fa fa-whatsapp fa-2x" aria-hidden="true"></i>
+                {% post_to_whatsapp actualite_list.get_absolute_url "WhatsApp" %}
+            </button>
         </div>
     </div>
 
@@ -80,18 +93,18 @@
                     </div>
                 {% endfor %}
             </div>
-            <div class="pagination">
+            <div class="pagination d-flex justify-content-center py-4">
                 <span class="step-links">
-                    {% if actu.has_previous %}          
-                        <a href="?page={{ actu.previous_page_number }}">précédente</a>
+                    {% if actu_relative.has_previous %}          
+                        <a href="?page={{ actu_relative.previous_page_number }}">page précédente</a>
                     {% endif %}
-    
+
                     <span class="current">
-                    {{ actu.number }}
+                    {{ actu_relative.number }}
                     </span>
-    
-                    {% if actu.has_next %}
-                        <a href="?page={{ actu.next_page_number }}">suivante</a>
+
+                    {% if actu_relative.has_next %}
+                        <a href="?page={{ actu_relative.next_page_number }}">page suivante</a>
                     {% endif %}
                 </span>
             </div>

@@ -16,15 +16,6 @@
         <li class="nav-item {% if url_name == 'actualite' %}active{% endif %}">
           <a class="nav-link" href="{% url 'actualite:actualite' %}">Actualités</a>
         </li>
-        <!-- <li class="nav-item dropdown {% if url_name == 'actualite' %}active{% endif %}">
-          <a class="nav-link dropdown-toggle" href="{% url 'actualite:actualite' %}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Actualités
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="{% url 'actualite:actualite' %}">Actu</a>
-            <a class="dropdown-item" href="{% url 'actualite:province' %}">Province</a>
-          </div>
-        </li> -->
         <li class="nav-item {% if url_name == 'economie' %}active{% endif %}">
           <a class="nav-link" href="{% url 'app:economie' %}">Economie</a>
         </li>

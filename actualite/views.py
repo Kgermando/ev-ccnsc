@@ -7,7 +7,7 @@ def actualite_views(request):
     actualite_list = Actualite.objects.all().order_by('-created')[:1]
     actualite_list_laterale = Actualite.objects.all().order_by('-created')[:3]
     actu = Actualite.objects.all().order_by('-created')
-    paginator = Paginator(actu, 9)
+    paginator = Paginator(actu, 12)
     page = request.GET.get('page')
     try:
         actu_relative = paginator.page(page)
@@ -27,7 +27,7 @@ def actualite_views(request):
 def actualite_view_detail(request, id):
     actualite_list = Actualite.objects.get(id=id)
     actu = Actualite.objects.all().order_by('?')
-    paginator = Paginator(actu, 9)
+    paginator = Paginator(actu, 8)
     page = request.GET.get('page')
     try:
         actu_relative = paginator.page(page)
@@ -56,5 +56,5 @@ def actualite_views_province(request):
     context = {
         'actu_province': actu_province,
     }
-    template_name = 'pages/actualite/actualite.html'
+    template_name = 'pages/actualite/province.html'
     return render(request, template_name, context)

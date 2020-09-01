@@ -13,9 +13,9 @@ def about_view(request):
 
 
 def team_view(request, team_id):
-    team_list = OurTeam.objects.get(id = team_id)
+    team = OurTeam.objects.get(id = team_id)
     context = {
-        'team_list': team_list
+        'team': team
     }
     template_name = 'pages/ourteam/team.html'
     return render(request, template_name, context)

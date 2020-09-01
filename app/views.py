@@ -36,7 +36,7 @@ def economie_views(request):
 
 def sante_views(request):
     sante = Actualite.objects.filter(actu_categorie='SANTE').order_by('-created')
-    paginator = Paginator(sante, 9)
+    paginator = Paginator(sante, 12)
     page = request.GET.get('page')
     try:
         sante_list = paginator.page(page)
@@ -51,7 +51,15 @@ def sante_views(request):
     return render(request, template_name, context)
 
 def securite_views(request):
-    securite_list = Actualite.objects.filter(actu_categorie='SECURITE').order_by('-created')
+    securite = Actualite.objects.filter(actu_categorie='SECURITE').order_by('-created')
+    paginator = Paginator(securite, 12)
+    page = request.GET.get('page')
+    try:
+        securite_list = paginator.page(page)
+    except PageNotAnInteger:
+        securite_list = paginator.page(1)
+    except EmptyPage:
+        securite_list = paginator.page(paginator.num_pages)
     context = {
         'securite_list': securite_list
     }
@@ -60,7 +68,15 @@ def securite_views(request):
 
 
 def formation_views(request):
-    formation_list = Actualite.objects.filter(actu_categorie='FORMATIONS').order_by('-created')
+    formation = Actualite.objects.filter(actu_categorie='FORMATIONS').order_by('-created')
+    paginator = Paginator(formation, 12)
+    page = request.GET.get('page')
+    try:
+        formation_list = paginator.page(page)
+    except PageNotAnInteger:
+        formation_list = paginator.page(1)
+    except EmptyPage:
+        formation_list = paginator.page(paginator.num_pages)
     context = {
         'formation_list': formation_list
     }
