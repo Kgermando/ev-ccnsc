@@ -19,8 +19,17 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
 
+from django.contrib.sitemaps.views import sitemap
+from .sitemaps import ActualiteSitemap, StaticViewSitemap
+
+sitemaps = {
+    'actualite-view' : ActualiteSitemap,
+    'static': StaticViewSitemap,
+    }
+
 
 urlpatterns = [
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps},name='django.contrib.sitemaps.views.sitemap'),
     path('', include('app.urls')),
     path('accounts/', include('accounts.urls')),
     path('actualite/', include('actualite.urls')),
