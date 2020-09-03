@@ -9,7 +9,7 @@
     <div class="sante-header-carousel">
         <div id="carouselExampleIndicators" class="carousel slide p-3" data-ride="carousel">
             <ol class="carousel-indicators">
-                {% for sante in sante_list %}
+                {% for sante in sante_slider %}
                     {% if forloop.first %}
                         <li data-target="#carouselExampleIndicators" data-slide-to="{{forloop.counter0}}" class="active"></li>
                     {% else %}
@@ -19,7 +19,7 @@
                 <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
             </ol>
             <div class="carousel-inner">
-                {% for sante in sante_list %}
+                {% for sante in sante_slider %}
                     {% if forloop.first %}
                         <div class="carousel-item active">
                     {% else %}
@@ -50,7 +50,7 @@
         <div class="card-deck">
             {% for sante in sante_list %}
                 <div class="card" style="min-width: 200px; max-width: 260px;">
-                    <img src="{{sante.actu_image.url}}" class="card-img-top w-100 h-50" alt="{{sante.actu_titre}}">
+                    <img src="{{sante.actu_image.url}}" class="card-img-top sante_img w-100 h-50" alt="{{sante.actu_titre}}">
                     <div class="card-body pt-2">
                         <h5 class="card-title">
                             <a href="{% url 'actualite:actualite-view-detail' sante.id %} ">{{sante.actu_titre|truncatechars:20}}</a>

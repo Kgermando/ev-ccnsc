@@ -35,6 +35,7 @@ def economie_views(request):
     return render(request, template_name, context)
 
 def sante_views(request):
+    sante_slider = Actualite.objects.filter(actu_categorie='SANTE').order_by('-created')[:5]
     sante = Actualite.objects.filter(actu_categorie='SANTE').order_by('-created')
     paginator = Paginator(sante, 12)
     page = request.GET.get('page')
@@ -45,6 +46,7 @@ def sante_views(request):
     except EmptyPage:
         sante_list = paginator.page(paginator.num_pages)
     context = {
+        'sante_slider': sante_slider,
         'sante_list': sante_list
     }
     template_name = 'pages/app/sante.html'

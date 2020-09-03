@@ -55,6 +55,10 @@ a {
     border: none;
 }
 
+.sante_img {
+    max-height: 300px;
+}
+
 .bordure {
     border: 6px;
 }
