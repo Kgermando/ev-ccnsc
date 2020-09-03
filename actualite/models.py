@@ -13,7 +13,7 @@ class Actualite(models.Model):
     actu_image_1 = models.ImageField(upload_to='actu_img/', blank=True, verbose_name='Facultatif')
     actu_image_2 = models.ImageField(upload_to='actu_img/', blank=True, verbose_name='Facultatif')
     actu_image_3 = models.ImageField(upload_to='actu_img/', blank=True, verbose_name='Facultatif')
-    created = models.DateTimeField(auto_now=True)
+    created = models.DateTimeField(auto_now_add=False)
 
     def get_absolute_url(self):
         from django.urls import reverse

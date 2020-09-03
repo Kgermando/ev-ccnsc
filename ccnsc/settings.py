@@ -25,7 +25,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'w!+%q^86qotsnev)h9(511zv6%83!6fmthi1m@&&v2tssyi74_'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False 
+DEBUG = True 
 
 ALLOWED_HOSTS = ['161.35.107.151', '127.0.0.1']
 
@@ -148,42 +148,29 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-# STATIC_URL = '/static/'
+if DEBUG == True:
+    STATIC_URL = '/static/'
 
-# STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
-# STATIC_ROOT = os.path.join(BASE_DIR, "static-root")
+    STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
+    STATIC_ROOT = os.path.join(BASE_DIR, "static-root")
 
-# MEDIA_URL = '/media/'
-# MEDIA_ROOT = os.path.join(BASE_DIR, 'media-root')
+    MEDIA_URL = '/media/'
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media-root')
+    
+else:
+    AWS_ACCESS_KEY_ID = 'UMOQOQ7AOR7G4GE74VA7'
+    AWS_SECRET_ACCESS_KEY = '8F13wNis2Cf/KA4d6B5VM+JlkDYKlksGV2IBHHAR4sg'
+    AWS_STORAGE_BUCKET_NAME = 'ccnsc-spaces'
+    AWS_S3_ENDPOINT_URL = 'https://nyc3.digitaloceanspaces.com'
+    AWS_S3_OBJECT_PARAMETERS = {
+        'CacheControl': 'max-age=86400',
+    }
+    AWS_LOCATION = 'ccnsc-static'
 
-AWS_ACCESS_KEY_ID = 'UMOQOQ7AOR7G4GE74VA7'
-AWS_SECRET_ACCESS_KEY = '8F13wNis2Cf/KA4d6B5VM+JlkDYKlksGV2IBHHAR4sg'
-AWS_STORAGE_BUCKET_NAME = 'ccnsc-spaces'
-AWS_S3_ENDPOINT_URL = 'https://nyc3.digitaloceanspaces.com'
-AWS_S3_OBJECT_PARAMETERS = {
-    'CacheControl': 'max-age=86400',
-}
-AWS_LOCATION = 'ccnsc-static'
+    STATICFILES_DIRS = [
+        os.path.join(BASE_DIR, 'static'),
+    ]
+    STATIC_URL = 'https://%s/%s/' % (AWS_S3_ENDPOINT_URL, AWS_LOCATION)
+    STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
-]
-STATIC_URL = 'https://%s/%s/' % (AWS_S3_ENDPOINT_URL, AWS_LOCATION)
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-
-# AWS_ACCESS_KEY_ID = '4BOJX5VWKDVH3WTGDN7S'
-# AWS_SECRET_ACCESS_KEY = 'TL6bjCUTU6oh0osWpis77EfU0/f+wI6qe3sekMu7G1U'
-# AWS_STORAGE_BUCKET_NAME = 'parlementaires-spaces'
-# AWS_S3_ENDPOINT_URL = 'https://nyc3.digitaloceanspaces.com'
-# AWS_S3_OBJECT_PARAMETERS = {
-#     'CacheControl': 'max-age=86400',
-# }
-# AWS_LOCATION = 'parlementaires-static'
-
-# STATICFILES_DIRS = [
-#     os.path.join(BASE_DIR, 'static'),
-# ]
-# STATIC_URL = 'https://%s/%s/' % (AWS_S3_ENDPOINT_URL, AWS_LOCATION)
-# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
