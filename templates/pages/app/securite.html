@@ -33,7 +33,7 @@
     <div class="pagination d-flex justify-content-center py-4">
         <span class="step-links">
             {% if securite_list.has_previous %}          
-                <a href="?page={{ formation_list.previous_page_number }}">page précédente</a>
+                <a href="?page={{ securite_list.previous_page_number }}">page précédente</a>
             {% endif %}
 
             <span class="current">
@@ -41,7 +41,7 @@
             </span>
 
             {% if securite_list.has_next %}
-                <a href="?page={{ formation_list.next_page_number }}">page suivante</a>
+                <a href="?page={{ securite_list.next_page_number }}">page suivante</a>
             {% endif %}
         </span>
     </div>

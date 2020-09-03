@@ -70,22 +70,22 @@
                 </div>
             {% endfor %}
         </div>
-        <div class="pagination">
+        <div class="pagination d-flex justify-content-center py-4">
             <span class="step-links">
                 {% if sante_list.has_previous %}          
-                    <a href="?page={{ sante_list.previous_page_number }}">previous</a>
+                    <a href="?page={{ sante_list.previous_page_number }}">page précédente</a>
                 {% endif %}
-        
+    
                 <span class="current">
-                  {{ sante_list.number }}
+                {{ sante_list.number }}
                 </span>
-        
+    
                 {% if sante_list.has_next %}
-                    <a href="?page={{ sante_list.next_page_number }}">next</a>
+                    <a href="?page={{ sante_list.next_page_number }}">page suivante</a>
                 {% endif %}
             </span>
         </div>
     </div>
-</div>
+</div> 
 
 {% endblock content %}

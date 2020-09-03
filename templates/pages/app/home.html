@@ -46,7 +46,7 @@
                                     <a href="{% url 'actualite:actualite-view-detail' home.id %} ">{{home.actu_titre|truncatechars:20}}</a>
                                 </h5>
                                 <small><span class="badge badge-danger">{{home.actu_categorie}}</span></small>
-                                <p class="card-text">{{home.actu_content|truncatechars:50}}</p>
+                                <p class="card-text">{{home.actu_content|truncatechars:60}}</p>
                                 <p class="card-text">
                                     <small class="text-muted">
                                         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-clock-history" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -78,7 +78,7 @@
                     <h5 class="card-title">
                         <a href="{% url 'actualite:actualite-view-detail' sante.id %} ">{{sante.actu_titre|truncatechars:20}}</a>
                     </h5>
-                    <p class="card-text">{{sante.actu_content|truncatechars:50}}</p>
+                    <p class="card-text">{{sante.actu_content|truncatechars:70}}</p>
                     <p class="card-text">
                         <small class="text-muted">
                             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-clock-history" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -109,7 +109,7 @@
                         <h5 class="card-title">
                             <a href="{% url 'actualite:actualite-view-detail' economie.id %} ">{{economie.actu_titre|truncatechars:25}}</a>
                         </h5>
-                        <p class="card-text">{{economie.actu_content|truncatechars:60}}</p>
+                        <p class="card-text">{{economie.actu_content|truncatechars:70}}</p>
                         <p class="card-text">
                             <small class="text-muted">
                                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-clock-history" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -139,7 +139,7 @@
                     <h5 class="card-title">
                         <a href="{% url 'actualite:actualite-view-detail' securite.id %} ">{{securite.actu_titre|truncatechars:20}}</a>
                     </h5>
-                    <p class="card-text">{{securite.actu_content|truncatechars:50}}</p>
+                    <p class="card-text">{{securite.actu_content|truncatechars:70}}</p>
                     <p class="card-text">
                         <small class="text-muted">
                             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-clock-history" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -168,7 +168,7 @@
                     <h5 class="card-title">
                         <a href="{% url 'actualite:actualite-view-detail' formation.id %} ">{{formation.actu_titre|truncatechars:20}}</a>
                     </h5>
-                    <p class="card-text">{{formation.actu_content|truncatechars:50}}</p>
+                    <p class="card-text">{{formation.actu_content|truncatechars:70}}</p>
                     <p class="card-text">
                         <small class="text-muted">
                             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-clock-history" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
