@@ -43,7 +43,7 @@
                         <div class="col-md-8">
                             <div class="card-body">
                                 <h5 class="card-title">
-                                    <a href="{% url 'actualite:actualite-view-detail' home.id %} ">{{home.actu_titre|truncatechars:20}}</a>
+                                    <a href="{% url 'actualite:actualite-view-detail' home.id %} ">{{home.actu_titre|truncatechars:25}}</a>
                                 </h5>
                                 <small><span class="badge badge-danger">{{home.actu_categorie}}</span></small>
                                 <p class="card-text">{{home.actu_content|truncatechars:60}}</p>
